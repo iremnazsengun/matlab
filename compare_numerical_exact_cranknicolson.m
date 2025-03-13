@@ -1,6 +1,6 @@
 function compare_numerical_exact()
     % Adım boyutları
-    h_values = [0.8, 0.4, 0.2, 0.1];
+    h_values = [1.6, 0.8, 0.4];
     
     for h_idx = 1:length(h_values)
         h = h_values(h_idx);
@@ -21,11 +21,12 @@ function compare_numerical_exact()
         
         % İç noktalar için denklemler
         for i = 2:N-1
-            A(i, i-1) = 1/h^2 + 1/(2*h);
-            A(i, i) = -2/h^2 - 1;
-            A(i, i+1) = 1/h^2 - 1/(2*h) - 1;
-            b(i) = -cos(t(i))/2 - cos(t(i+1))/2 - 3*sin(t(i))/2 - 3*sin(t(i+1))/2;
+            A(i, i-1) = 1/h^2 + 3/(2*h);
+            A(i, i) = -2/h^2 +1;
+            A(i, i+1) = 1/h^2 - 3/(2*h) +1;
+            b(i) = -3*cos(t(i))/2 - 3*cos(t(i+1))/2 + sin(t(i))/2 + sin(t(i+1))/2;
         end
+
         
         % Lineer sistemi çöz
         Y = A\b;
